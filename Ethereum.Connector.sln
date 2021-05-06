@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{32D4FED5-5B98-487B-97DF-921B10120CDA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{99A00B62-281D-4C1A-BFDB-87B2755C7A90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{10D38137-6DA5-49D4-AD73-AE4178E8235C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{FEC5EC58-CD4D-4491-88EB-F4C087280F2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{454667CE-BF4E-4A45-B69B-149D9335EDC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereum.Connector.Domain", "src\Domain\Ethereum.Connector.Domain\Ethereum.Connector.Domain.csproj", "{1DC964F0-BD27-4001-94B3-6E0FD9A25630}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereum.Connector.Infrastructure", "src\Infrastructure\Ethereum.Connector.Infrastructure\Ethereum.Connector.Infrastructure.csproj", "{F9E32D14-F145-4FE0-8D6E-992E9A6EE84A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereum.Connector.Application", "src\Application\Ethereum.Connector.Application\Ethereum.Connector.Application.csproj", "{A78FF067-EA44-43D5-A9AA-B8764600CED6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{10D38137-6DA5-49D4-AD73-AE4178E8235C} = {32D4FED5-5B98-487B-97DF-921B10120CDA}
+		{FEC5EC58-CD4D-4491-88EB-F4C087280F2D} = {32D4FED5-5B98-487B-97DF-921B10120CDA}
+		{454667CE-BF4E-4A45-B69B-149D9335EDC7} = {32D4FED5-5B98-487B-97DF-921B10120CDA}
+		{1DC964F0-BD27-4001-94B3-6E0FD9A25630} = {FEC5EC58-CD4D-4491-88EB-F4C087280F2D}
+		{F9E32D14-F145-4FE0-8D6E-992E9A6EE84A} = {454667CE-BF4E-4A45-B69B-149D9335EDC7}
+		{A78FF067-EA44-43D5-A9AA-B8764600CED6} = {10D38137-6DA5-49D4-AD73-AE4178E8235C}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DC964F0-BD27-4001-94B3-6E0FD9A25630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DC964F0-BD27-4001-94B3-6E0FD9A25630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DC964F0-BD27-4001-94B3-6E0FD9A25630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DC964F0-BD27-4001-94B3-6E0FD9A25630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E32D14-F145-4FE0-8D6E-992E9A6EE84A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E32D14-F145-4FE0-8D6E-992E9A6EE84A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E32D14-F145-4FE0-8D6E-992E9A6EE84A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E32D14-F145-4FE0-8D6E-992E9A6EE84A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A78FF067-EA44-43D5-A9AA-B8764600CED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A78FF067-EA44-43D5-A9AA-B8764600CED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A78FF067-EA44-43D5-A9AA-B8764600CED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A78FF067-EA44-43D5-A9AA-B8764600CED6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
