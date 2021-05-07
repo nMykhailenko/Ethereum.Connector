@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereum.Connector.Infrastr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereum.Connector.Application", "src\Application\Ethereum.Connector.Application\Ethereum.Connector.Application.csproj", "{A78FF067-EA44-43D5-A9AA-B8764600CED6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereum.Connector.Application.UnitTests", "tests\Ethereum.Connector.Application.UnitTests\Ethereum.Connector.Application.UnitTests.csproj", "{D8A6144F-F9BF-4676-A874-0DDB77F5346E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,7 @@ Global
 		{1DC964F0-BD27-4001-94B3-6E0FD9A25630} = {FEC5EC58-CD4D-4491-88EB-F4C087280F2D}
 		{F9E32D14-F145-4FE0-8D6E-992E9A6EE84A} = {454667CE-BF4E-4A45-B69B-149D9335EDC7}
 		{A78FF067-EA44-43D5-A9AA-B8764600CED6} = {10D38137-6DA5-49D4-AD73-AE4178E8235C}
+		{D8A6144F-F9BF-4676-A874-0DDB77F5346E} = {99A00B62-281D-4C1A-BFDB-87B2755C7A90}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1DC964F0-BD27-4001-94B3-6E0FD9A25630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +45,9 @@ Global
 		{A78FF067-EA44-43D5-A9AA-B8764600CED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A78FF067-EA44-43D5-A9AA-B8764600CED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A78FF067-EA44-43D5-A9AA-B8764600CED6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8A6144F-F9BF-4676-A874-0DDB77F5346E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8A6144F-F9BF-4676-A874-0DDB77F5346E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8A6144F-F9BF-4676-A874-0DDB77F5346E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8A6144F-F9BF-4676-A874-0DDB77F5346E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -8,5 +8,7 @@ namespace Ethereum.Connector.Application.MaterialManufacturing.Commands
         {
             
         }
+
+        public string Name { get; init; }
     }
 }
