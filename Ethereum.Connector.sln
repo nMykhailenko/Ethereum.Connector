@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereum.Connector.Applicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereum.Connector.Application.UnitTests", "tests\Ethereum.Connector.Application.UnitTests\Ethereum.Connector.Application.UnitTests.csproj", "{D8A6144F-F9BF-4676-A874-0DDB77F5346E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{7385795D-F6B1-4C49-B767-B36381CB61BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereum.Connector.API", "src\Web\Ethereum.Connector.API\Ethereum.Connector.API.csproj", "{122000EA-3F4B-4299-90B4-664626CF70E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,8 @@ Global
 		{F9E32D14-F145-4FE0-8D6E-992E9A6EE84A} = {454667CE-BF4E-4A45-B69B-149D9335EDC7}
 		{A78FF067-EA44-43D5-A9AA-B8764600CED6} = {10D38137-6DA5-49D4-AD73-AE4178E8235C}
 		{D8A6144F-F9BF-4676-A874-0DDB77F5346E} = {99A00B62-281D-4C1A-BFDB-87B2755C7A90}
+		{7385795D-F6B1-4C49-B767-B36381CB61BC} = {32D4FED5-5B98-487B-97DF-921B10120CDA}
+		{122000EA-3F4B-4299-90B4-664626CF70E8} = {7385795D-F6B1-4C49-B767-B36381CB61BC}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1DC964F0-BD27-4001-94B3-6E0FD9A25630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -49,5 +55,9 @@ Global
 		{D8A6144F-F9BF-4676-A874-0DDB77F5346E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8A6144F-F9BF-4676-A874-0DDB77F5346E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8A6144F-F9BF-4676-A874-0DDB77F5346E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{122000EA-3F4B-4299-90B4-664626CF70E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{122000EA-3F4B-4299-90B4-664626CF70E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{122000EA-3F4B-4299-90B4-664626CF70E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{122000EA-3F4B-4299-90B4-664626CF70E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

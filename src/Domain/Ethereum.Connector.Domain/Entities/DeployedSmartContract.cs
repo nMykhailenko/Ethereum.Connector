@@ -5,6 +5,18 @@ namespace Ethereum.Connector.Domain.Entities
     /// </summary>
     public class DeployedSmartContract
     {
+        public DeployedSmartContract()
+        {
+            
+        }
+
+        public DeployedSmartContract(string contractAddress, string type, string abi)
+        {
+            ContractAddress = contractAddress;
+            Type = type;
+            Abi = abi;
+        }
+        
         /// <summary>
         /// Gets or sets the ID.
         /// </summary>

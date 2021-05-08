@@ -1,6 +1,6 @@
 using Nethereum.Contracts;
 
-namespace Ethereum.Connector.Application.MaterialManufacturing
+namespace Ethereum.Connector.Application.MaterialManufacturing.Models
 {
     public class MaterialManufacturingDeployment: ContractDeploymentMessage
     {
