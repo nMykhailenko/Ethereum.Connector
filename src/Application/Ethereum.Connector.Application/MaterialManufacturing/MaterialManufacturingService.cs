@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using OneOf;
 using Ethereum.Connector.Application.Common.ErrorModels;
 using Ethereum.Connector.Application.Common.Interfaces.Database;

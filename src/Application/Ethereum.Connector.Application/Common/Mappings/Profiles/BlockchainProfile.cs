@@ -1,5 +1,4 @@
 using AutoMapper;
-using Ethereum.Connector.Application.MaterialManufacturing;
 using Ethereum.Connector.Application.MaterialManufacturing.Commands;
 using Ethereum.Connector.Application.MaterialManufacturing.Models;
 
