@@ -12,5 +12,9 @@ namespace Ethereum.Connector.Application.MaterialManufacturing.Contract
         Task<OneOf<MaterialManufacturingResponseModel, EntityNotFound>> CreateMaterialManufacturingAsync(
             CreateMaterialManufacturingCommand command, 
             CancellationToken cancellationToken);
+
+        Task<OneOf<MaterialManufacturingResponseModel, EntityNotFound>> GetMaterialManufacturingAsync(
+            long id,
+            CancellationToken cancellationToken);
     }
 }

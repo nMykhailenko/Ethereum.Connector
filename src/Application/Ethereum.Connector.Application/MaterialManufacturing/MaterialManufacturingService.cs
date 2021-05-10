@@ -14,7 +14,7 @@ using Ethereum.Connector.Domain.Entities;
 
 namespace Ethereum.Connector.Application.MaterialManufacturing
 {
-    public class MaterialManufacturingService: IMaterialManufacturingService
+    public class MaterialManufacturingService : IMaterialManufacturingService
     {
         private const string ContractType = "MaterialManufacturing";
         
@@ -32,6 +32,20 @@ namespace Ethereum.Connector.Application.MaterialManufacturing
             _mapper = mapper ?? throw  new ArgumentNullException(nameof(mapper));
         }
 
+        public async Task<OneOf<MaterialManufacturingResponseModel, EntityNotFound>> GetMaterialManufacturingAsync(long id, CancellationToken cancellationToken)
+        {
+            var smartContract = await _blockchainRepository
+                .GetDeployedSmartContractByIdAsync(id, cancellationToken);
+
+            if (smartContract is null)
+            {
+                return new EntityNotFound {Message = $"The deployed smart-contract with ID: {id} not found."};
+            }
+
+            // TODO need to add getting from blockchain network.
+            return new MaterialManufacturingResponseModel(id, "");
+        }
+        
         public async Task<OneOf<MaterialManufacturingResponseModel, EntityNotFound>> CreateMaterialManufacturingAsync(
             CreateMaterialManufacturingCommand command, 
             CancellationToken cancellationToken)
