@@ -14,6 +14,9 @@ using Ethereum.Connector.Domain.Entities;
 
 namespace Ethereum.Connector.Application.MaterialManufacturing
 {
+    /// <summary>
+    /// Instance of Material manufacturing service.
+    /// </summary>
     public class MaterialManufacturingService : IMaterialManufacturingService
     {
         private const string ContractType = "MaterialManufacturing";
@@ -22,6 +25,12 @@ namespace Ethereum.Connector.Application.MaterialManufacturing
         private readonly IBlockchainRepository _blockchainRepository;
         private readonly IEthereumService<MaterialManufacturingDeployment> _ethereumService;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="mapper">Mapper.</param>
+        /// <param name="blockchainRepository">Blockchain repository.</param>
+        /// <param name="ethereumService">Ethereum service.</param>
         public MaterialManufacturingService(
             IMapper mapper,
             IBlockchainRepository blockchainRepository, 
@@ -31,8 +40,9 @@ namespace Ethereum.Connector.Application.MaterialManufacturing
             _blockchainRepository = blockchainRepository ?? throw new ArgumentNullException(nameof(blockchainRepository));
             _ethereumService = ethereumService ?? throw new ArgumentNullException(nameof(ethereumService));
         }
-
-        public async Task<OneOf<MaterialManufacturingResponseModel, EntityNotFound>> GetMaterialManufacturingAsync(long id, CancellationToken cancellationToken)
+        
+        /// <inheritdoc />
+        public async Task<OneOf<MaterialManufacturingResponseModel, EntityNotFound>> GetMaterialManufacturingByIdAsync(long id, CancellationToken cancellationToken)
         {
             var smartContract = await _blockchainRepository
                 .GetDeployedSmartContractByIdAsync(id, cancellationToken);
@@ -46,20 +56,22 @@ namespace Ethereum.Connector.Application.MaterialManufacturing
             return new MaterialManufacturingResponseModel(id, "");
         }
         
+        /// <inheritdoc />
         public async Task<OneOf<MaterialManufacturingResponseModel, EntityNotFound>> CreateMaterialManufacturingAsync(
             CreateMaterialManufacturingCommand command, 
             CancellationToken cancellationToken)
         {
-            var deploymentModel = _mapper.Map<MaterialManufacturingDeployment>(command);
-
-            var smartContract = await _blockchainRepository.GetSmartContractByTypeAsync(ContractType, cancellationToken);
-            
+            var smartContract =
+                await _blockchainRepository.GetSmartContractByTypeAsync(ContractType, cancellationToken);
             if (smartContract == null)
             {
                 return new EntityNotFound {Message = $"Smart-contract with type: {ContractType} not found"};
             }
             
+            var deploymentModel = _mapper.Map<MaterialManufacturingDeployment>(command);
+            
             var deployedContractAddress = await _ethereumService.DeployAsync(deploymentModel, smartContract);
+            
             var deployedSmartContractModel = new DeployedSmartContract(
                 deployedContractAddress,
                 ContractType,

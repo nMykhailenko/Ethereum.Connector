@@ -1,7 +1,7 @@
 namespace Ethereum.Connector.Application.Common.Options
 {
     /// <summary>
-    /// SQL connection options.
+    /// Class describes SQL connection options.
     /// </summary>
     public class SqlConnectionOptions
     {

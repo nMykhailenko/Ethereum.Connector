@@ -5,8 +5,18 @@ using Nethereum.ABI.Model;
 
 namespace Ethereum.Connector.Application.Common.Extensions
 {
-    public static class ContractParameterExtension
+    /// <summary>
+    /// Contract parameter extensions
+    /// </summary>
+    public static class ContractParameterExtensions
     {
+        /// <summary>
+        /// Get arguments.
+        /// </summary>
+        /// <param name="parameters">List of parameters.</param>
+        /// <param name="obj">Object</param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>Array of object arguments.</returns>
         public static object[] GetArguments<T>(this IEnumerable<Parameter> parameters, T obj)
         {
             var enumerable = parameters as Parameter[] ?? parameters.ToArray();

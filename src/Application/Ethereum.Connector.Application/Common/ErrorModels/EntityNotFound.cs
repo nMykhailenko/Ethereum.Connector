@@ -1,7 +1,7 @@
 namespace Ethereum.Connector.Application.Common.ErrorModels
 {
     /// <summary>
-    /// Entity not found struct for OneOf.
+    /// Entity not found struct.
     /// </summary>
     public struct EntityNotFound
     {

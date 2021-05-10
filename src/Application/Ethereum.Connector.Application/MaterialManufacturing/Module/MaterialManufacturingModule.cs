@@ -7,8 +7,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Ethereum.Connector.Application.MaterialManufacturing.Module
 {
+    /// <summary>
+    /// Material manufacturing module.
+    /// </summary>
     public class MaterialManufacturingModule : IInjectModule
     {
+        /// <inheritdoc />
         public IServiceCollection Load(IServiceCollection services)
         {
             services.AddScoped<IMaterialManufacturingService, MaterialManufacturingService>();

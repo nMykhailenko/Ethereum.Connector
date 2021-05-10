@@ -1,5 +1,8 @@
 namespace Ethereum.Connector.Application.Common.Options
 {
+    /// <summary>
+    /// Class describes azure blockchain service options.
+    /// </summary>
     public class AzureBlockchainServiceOptions
     {
         /// <summary>
