@@ -2,13 +2,15 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using OneOf;
+using Ethereum.Connector.Application.Common.ErrorModels;
 using Ethereum.Connector.Application.Common.Interfaces.Database;
 using Ethereum.Connector.Application.Common.Interfaces.Ethereum;
 using Ethereum.Connector.Application.MaterialManufacturing.Commands;
 using Ethereum.Connector.Application.MaterialManufacturing.Contract;
 using Ethereum.Connector.Application.MaterialManufacturing.Models;
+using Ethereum.Connector.Application.MaterialManufacturing.Models.ResponseModels;
 using Ethereum.Connector.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace Ethereum.Connector.Application.MaterialManufacturing
 {
@@ -30,7 +32,7 @@ namespace Ethereum.Connector.Application.MaterialManufacturing
             _mapper = mapper ?? throw  new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task CreateMaterialManufacturingAsync(
+        public async Task<OneOf<MaterialManufacturingResponseModel, EntityNotFound>> CreateMaterialManufacturingAsync(
             CreateMaterialManufacturingCommand command, 
             CancellationToken cancellationToken)
         {
@@ -38,8 +40,10 @@ namespace Ethereum.Connector.Application.MaterialManufacturing
 
             var smartContract = await _blockchainRepository.GetSmartContractByTypeAsync(ContractType, cancellationToken);
             
-            // TODO use OneOf nuget for returning value.
-            if (smartContract == null) throw new Exception($"Smart-contract with type: {ContractType} not found");
+            if (smartContract == null)
+            {
+                return new EntityNotFound {Message = $"Smart-contract with type: {ContractType} not found"};
+            }
             
             var deployedContractAddress = await _ethereumService.DeployAsync(deploymentModel, smartContract);
             var deployedSmartContractModel = new DeployedSmartContract(
@@ -47,7 +51,9 @@ namespace Ethereum.Connector.Application.MaterialManufacturing
                 ContractType,
                 smartContract.Abi);
 
-            await _blockchainRepository.AddDeployedSmartContractAsync(deployedSmartContractModel, cancellationToken);
+            var deployedSmartContract = await _blockchainRepository.AddDeployedSmartContractAsync(deployedSmartContractModel, cancellationToken);
+
+            return new MaterialManufacturingResponseModel(deployedSmartContract.Id, command.Name);
         }
     }
 }

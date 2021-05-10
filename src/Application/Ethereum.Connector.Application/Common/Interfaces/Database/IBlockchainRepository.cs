@@ -10,6 +10,6 @@ namespace Ethereum.Connector.Application.Common.Interfaces.Database
         Task<SmartContract> GetSmartContractByTypeAsync(string contractType, CancellationToken cancellationToken);
 
         // Deployed Smart-Contract actions.
-        Task AddDeployedSmartContractAsync(DeployedSmartContract entity, CancellationToken cancellationToken);
+        Task<DeployedSmartContract> AddDeployedSmartContractAsync(DeployedSmartContract entity, CancellationToken cancellationToken);
     }
 }

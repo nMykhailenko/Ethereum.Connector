@@ -9,6 +9,7 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
       <PackageReference Include="Nethereum.ABI" Version="3.8.0" />
       <PackageReference Include="Nethereum.Web3" Version="3.8.0" />
+      <PackageReference Include="OneOf" Version="3.0.178" />
     </ItemGroup>
 
     <ItemGroup>
