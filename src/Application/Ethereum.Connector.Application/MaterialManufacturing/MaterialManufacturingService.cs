@@ -27,9 +27,9 @@ namespace Ethereum.Connector.Application.MaterialManufacturing
             IBlockchainRepository blockchainRepository, 
             IEthereumService<MaterialManufacturingDeployment> ethereumService)
         {
+            _mapper = mapper ?? throw  new ArgumentNullException(nameof(mapper));
             _blockchainRepository = blockchainRepository ?? throw new ArgumentNullException(nameof(blockchainRepository));
             _ethereumService = ethereumService ?? throw new ArgumentNullException(nameof(ethereumService));
-            _mapper = mapper ?? throw  new ArgumentNullException(nameof(mapper));
         }
 
         public async Task<OneOf<MaterialManufacturingResponseModel, EntityNotFound>> GetMaterialManufacturingAsync(long id, CancellationToken cancellationToken)
