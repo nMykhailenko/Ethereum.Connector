@@ -21,22 +21,18 @@ namespace Ethereum.Connector.Application.MaterialManufacturing
     {
         private const string ContractType = "MaterialManufacturing";
         
-        private readonly IMapper _mapper;
         private readonly IBlockchainRepository _blockchainRepository;
         private readonly IEthereumService<MaterialManufacturingDeployment> _ethereumService;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="mapper">Mapper.</param>
         /// <param name="blockchainRepository">Blockchain repository.</param>
         /// <param name="ethereumService">Ethereum service.</param>
         public MaterialManufacturingService(
-            IMapper mapper,
             IBlockchainRepository blockchainRepository, 
             IEthereumService<MaterialManufacturingDeployment> ethereumService)
         {
-            _mapper = mapper ?? throw  new ArgumentNullException(nameof(mapper));
             _blockchainRepository = blockchainRepository ?? throw new ArgumentNullException(nameof(blockchainRepository));
             _ethereumService = ethereumService ?? throw new ArgumentNullException(nameof(ethereumService));
         }
@@ -68,9 +64,7 @@ namespace Ethereum.Connector.Application.MaterialManufacturing
                 return new EntityNotFound {Message = $"Smart-contract with type: {ContractType} not found"};
             }
             
-            var deploymentModel = _mapper.Map<MaterialManufacturingDeployment>(command);
-            
-            var deployedContractAddress = await _ethereumService.DeployAsync(deploymentModel, smartContract);
+            var deployedContractAddress = await _ethereumService.DeployAsync(command, smartContract);
             
             var deployedSmartContractModel = new DeployedSmartContract(
                 deployedContractAddress,
