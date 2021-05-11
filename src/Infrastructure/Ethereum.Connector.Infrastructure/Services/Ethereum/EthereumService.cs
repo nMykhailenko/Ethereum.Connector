@@ -17,6 +17,10 @@ using Nethereum.Web3.Accounts;
 
 namespace Ethereum.Connector.Infrastructure.Services.Ethereum
 {
+    /// <summary>
+    /// Ethereum service instance.
+    /// </summary>
+    /// <typeparam name="TContractDeployment"></typeparam>
     public class EthereumService<TContractDeployment> : IEthereumService<TContractDeployment>
         where TContractDeployment : ContractDeploymentMessage, new()
     {
@@ -24,6 +28,12 @@ namespace Ethereum.Connector.Infrastructure.Services.Ethereum
         private readonly ApplicationDbContext _context;
         private readonly AzureBlockchainServiceOptions _blockchainServiceOptions;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="mapper">Mapper.</param>
+        /// <param name="context">Database context</param>
+        /// <param name="blockchainServiceOptions">Blockchain service options.</param>
         public EthereumService(
             IMapper mapper,
             ApplicationDbContext context,
@@ -34,6 +44,7 @@ namespace Ethereum.Connector.Infrastructure.Services.Ethereum
             _blockchainServiceOptions = blockchainServiceOptions.Value;
         }
 
+        /// <inheritdoc />
         public async Task<string> DeployAsync<TModelDto>(TModelDto modelDto, SmartContract smartContract)
             where TModelDto : class
         {
@@ -53,6 +64,7 @@ namespace Ethereum.Connector.Infrastructure.Services.Ethereum
             return deploymentReceipt.ContractAddress;
         }
 
+        /// <inheritdoc />
         public async Task<TOutput> QueryAsync<TFunction, TOutput>(string contractAddress)
             where TFunction : FunctionMessage, new()
         {
@@ -71,6 +83,7 @@ namespace Ethereum.Connector.Infrastructure.Services.Ethereum
             return result;
         }
 
+        /// <inheritdoc />
         public async Task CommandAsync<TInput>(TInput body, int contractId, string functionName)
         {
             var contractEntity = await _context.DeployedSmartContracts.FindAsync(contractId);
@@ -80,6 +93,7 @@ namespace Ethereum.Connector.Infrastructure.Services.Ethereum
             await CommandAsync(body, contractEntity, functionName);
         }
 
+        /// <inheritdoc />
         public async Task CommandAsync<TInput>(
             TInput body,
             DeployedSmartContract contractEntity,

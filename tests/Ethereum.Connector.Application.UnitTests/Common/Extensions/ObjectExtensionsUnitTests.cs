@@ -1,4 +1,3 @@
-using System.Linq;
 using Ethereum.Connector.Application.Common.Extensions;
 using Ethereum.Connector.Application.MaterialManufacturing.Commands;
 using FluentAssertions;

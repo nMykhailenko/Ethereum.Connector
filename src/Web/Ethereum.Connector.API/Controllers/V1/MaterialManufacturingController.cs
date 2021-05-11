@@ -10,7 +10,7 @@ using Ethereum.Connector.Application.MaterialManufacturing.Validators;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ethereum.Connector.API.Controllers
+namespace Ethereum.Connector.API.Controllers.V1
 {
     /// <summary>
     /// Material manufacturing controller.
@@ -84,7 +84,7 @@ namespace Ethereum.Connector.API.Controllers
 
             return result.Match<IActionResult>(
                 entity
-                    => Created($"api/material-manufacturing/{entity.Id}", entity),
+                    => Created($"api/v1.0/material-manufacturing/{entity.Id}", entity),
                 notFound => BadRequest(new ErrorResponseModel(notFound.Message, nameof(EntityNotFound)))
             );
         }

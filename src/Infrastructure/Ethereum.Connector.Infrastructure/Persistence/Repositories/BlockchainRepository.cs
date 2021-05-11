@@ -23,10 +23,18 @@ namespace Ethereum.Connector.Infrastructure.Persistence.Repositories
                     contractType,
                     StringComparison.InvariantCultureIgnoreCase), cancellationToken);
 
-        public async Task AddDeployedSmartContractAsync(DeployedSmartContract entity, CancellationToken cancellationToken)
+        public Task<DeployedSmartContract> GetDeployedSmartContractByIdAsync(long id,
+            CancellationToken cancellationToken)
+            => _dbContext.DeployedSmartContracts
+                .FirstOrDefaultAsync(x => x.Id == id, cancellationToken: cancellationToken);
+        
+        public async Task<DeployedSmartContract> AddDeployedSmartContractAsync(DeployedSmartContract entity,
+            CancellationToken cancellationToken)
         {
             await _dbContext.DeployedSmartContracts.AddAsync(entity, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
+
+            return entity;
         }
     }
 }

@@ -24,5 +24,10 @@ namespace Ethereum.Connector.Domain.Entities
         /// Gets or sets the smart-contract type.
         /// </summary>
         public string Type { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the API version.
+        /// </summary>
+        public string ApiVersion { get; set; }
     }
 }

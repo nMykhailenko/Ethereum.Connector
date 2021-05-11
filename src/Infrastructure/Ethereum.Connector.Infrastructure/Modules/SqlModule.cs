@@ -17,16 +17,16 @@ namespace Ethereum.Connector.Infrastructure.Modules
     {
         private readonly IConfiguration _configuration;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="configuration">Configuration.</param>
         public SqlModule(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-        /// <summary>
-        /// Load SQL module.
-        /// </summary>
-        /// <param name="services">Current service collection.</param>
-        /// <returns>Updated service collection.</returns>
+        /// <inheritdoc />
         public IServiceCollection Load(IServiceCollection services)
         {
             var sqlConnectionOptions = _configuration

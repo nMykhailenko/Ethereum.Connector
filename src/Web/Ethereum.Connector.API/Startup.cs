@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ethereum.Connector.Application.Common.Extensions;
+using Ethereum.Connector.Application.MaterialManufacturing.Module;
 using Ethereum.Connector.Infrastructure.Modules;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace Ethereum.Connector.API
@@ -27,10 +23,20 @@ namespace Ethereum.Connector.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.RegisterModule(new BlockchainModule(Configuration))
-                .RegisterModule(new SqlModule(Configuration));
-            
+            services.AddMvc()
+                .AddFluentValidation();
             services.AddControllers();
+            services.AddApiVersioning(config =>
+            {
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
+                config.ReportApiVersions = true;
+            });
+
+            services.RegisterModule(new BlockchainModule(Configuration))
+                .RegisterModule(new SqlModule(Configuration))
+                .RegisterModule(new MaterialManufacturingModule());
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Ethereum.Connector.API", Version = "v1"});
