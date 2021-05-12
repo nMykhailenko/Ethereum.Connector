@@ -6,6 +6,7 @@ using Ethereum.Connector.Application.Common.Interfaces.Database;
 using Ethereum.Connector.Application.Common.Interfaces.Ethereum;
 using Ethereum.Connector.Application.MaterialManufacturing;
 using Ethereum.Connector.Application.MaterialManufacturing.Commands;
+using Ethereum.Connector.Application.MaterialManufacturing.Contract;
 using Ethereum.Connector.Application.MaterialManufacturing.Models;
 using Ethereum.Connector.Application.MaterialManufacturing.Models.ResponseModels;
 using Ethereum.Connector.Domain.Entities;
@@ -19,6 +20,19 @@ namespace Ethereum.Connector.Application.UnitTests.MaterialManufacturing
     public class MaterialManufacturingServiceUnitTests
     {
         private const string ContractType = "MaterialManufacturing";
+        
+        private readonly Mock<IBlockchainRepository> _blockchainRepositoryMock;
+        private readonly Mock<IEthereumService<MaterialManufacturingDeployment>> _ethereumServiceMock;
+        private readonly IMaterialManufacturingService _sub;
+        
+        public MaterialManufacturingServiceUnitTests()
+        {
+            _blockchainRepositoryMock = new Mock<IBlockchainRepository>();
+            _ethereumServiceMock = new Mock<IEthereumService<MaterialManufacturingDeployment>>();
+            _sub = new MaterialManufacturingService(
+                _blockchainRepositoryMock.Object,
+                _ethereumServiceMock.Object);
+        }
         
         [Fact]
         public void MaterialManufacturingServiceConstructor_ShouldThrow_ArgumentNullException_If_BlockchainRepository_IsNull()
@@ -49,20 +63,14 @@ namespace Ethereum.Connector.Application.UnitTests.MaterialManufacturing
         {
             // arrange
             var command = new CreateMaterialManufacturingCommand();
-            var blockchainRepositoryMock = new Mock<IBlockchainRepository>();
-            blockchainRepositoryMock.Setup(
+            _blockchainRepositoryMock.Setup(
                     x => x.GetSmartContractByTypeAsync(
                         It.IsAny<string>(),
                         It.IsAny<CancellationToken>()))
                 .ReturnsAsync((SmartContract) null);
-            
-            var ethereumServiceMock = Mock.Of<IEthereumService<MaterialManufacturingDeployment>>();
-            var service = new MaterialManufacturingService(
-                blockchainRepositoryMock.Object, 
-                ethereumServiceMock);
 
             // act
-            var result = await service
+            var result = await _sub
                 .CreateMaterialManufacturingAsync(command, CancellationToken.None);
 
             // assert
@@ -91,31 +99,25 @@ namespace Ethereum.Connector.Application.UnitTests.MaterialManufacturing
                 smartContract.Abi) { Id =  1 };
             var expectedResult = new MaterialManufacturingResponseModel(deployedSmartContract.Id, command.Name);
             
-            var blockchainRepositoryMock = new Mock<IBlockchainRepository>();
-            blockchainRepositoryMock.Setup(
+            _blockchainRepositoryMock.Setup(
                     x => x.GetSmartContractByTypeAsync(
                         It.IsAny<string>(),
                         It.IsAny<CancellationToken>()))
                 .ReturnsAsync(smartContract);
-            blockchainRepositoryMock.Setup(
+            _blockchainRepositoryMock.Setup(
                     x => x.AddDeployedSmartContractAsync(
                         It.IsAny<DeployedSmartContract>(),
                         CancellationToken.None))
                 .ReturnsAsync(deployedSmartContract);
             
-            var ethereumServiceMock = new Mock<IEthereumService<MaterialManufacturingDeployment>>();
-            ethereumServiceMock.Setup(
+            _ethereumServiceMock.Setup(
                     x => x.DeployAsync(
                         It.IsAny<CreateMaterialManufacturingCommand>(), 
                         It.IsAny<SmartContract>()))
                 .ReturnsAsync(contractAddress);
             
-            var service = new MaterialManufacturingService(
-                blockchainRepositoryMock.Object, 
-                ethereumServiceMock.Object);
-
             // act
-            var result = await service
+            var result = await _sub
                 .CreateMaterialManufacturingAsync(command, CancellationToken.None);
 
             // assert
