@@ -39,12 +39,8 @@ namespace Ethereum.Connector.Application.UnitTests.MaterialManufacturing
             var blockchainRepositoryMock = Mock.Of<IBlockchainRepository>();
             Action action = () 
                 => new MaterialManufacturingService(blockchainRepositoryMock, null);
-
-            // act
-            var ex = Assert.Throws<ArgumentNullException>(
-                () => new MaterialManufacturingService(blockchainRepositoryMock, null));
             
-            // assert
+            // act & assert
             action.Should().Throw<ArgumentNullException>().WithMessage(expectedException.Message);
         }
         
