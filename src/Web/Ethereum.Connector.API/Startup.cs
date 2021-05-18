@@ -1,4 +1,5 @@
 using Ethereum.Connector.Application.Common.Extensions;
+using Ethereum.Connector.Application.Common.Mappings.Modules;
 using Ethereum.Connector.Application.MaterialManufacturing.Module;
 using Ethereum.Connector.Infrastructure.Modules;
 using FluentValidation.AspNetCore;
@@ -34,6 +35,7 @@ namespace Ethereum.Connector.API
             });
 
             services.RegisterModule(new BlockchainModule(Configuration))
+                .RegisterModule(new MappingModule())
                 .RegisterModule(new SqlModule(Configuration))
                 .RegisterModule(new MaterialManufacturingModule());
             
