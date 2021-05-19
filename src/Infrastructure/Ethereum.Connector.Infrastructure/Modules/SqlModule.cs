@@ -33,7 +33,7 @@ namespace Ethereum.Connector.Infrastructure.Modules
                 .GetSection(nameof(SqlConnectionOptions)).Get<SqlConnectionOptions>();
             
             services.Configure<SqlConnectionOptions>(
-                x => _configuration.GetSection(nameof(SqlCompareOptions)).Bind(x));
+                x => _configuration.GetSection(nameof(SqlConnectionOptions)).Bind(x));
 
             services.AddScoped<IBlockchainRepository, BlockchainRepository>();
             
